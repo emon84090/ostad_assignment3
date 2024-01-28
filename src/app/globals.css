@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  body {
+    @apply font-spartan;
+  }
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-6;
+  }
+  .heading-text {
+    @apply text-3xl  lg:text-4xl font-jost font-semibold text-titlescolor capitalize;
+  }
+  .sub-heading-text {
+    @apply text-2xl lg:text-3xl font-jost font-medium  text-titlescolor capitalize;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
+
+.text-before {
+  position: relative;
+  margin-left: 14px;
+}
+
+.text-before::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #eff2fb;
+  left: -13px;
+  top: 5px;
+  border-radius: 50%;
+}
+
+.f-cat-item ul li {
+  line-height: 33px;
+}
+
+.newsletter {
+  background-image: url("../../public/Newsletter.png");
+}

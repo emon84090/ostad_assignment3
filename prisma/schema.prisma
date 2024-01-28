@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0)
+  post      post[]
+}
+
+
+
+model post {
+  id          Int       @id @default(autoincrement())
+  title       String
+  short_des   String
+  description String    @db.LongText
+  keywords    String
+ 
+  cid         Int
+  type        String
+  views       Int       @default(0)
+  createdAt   DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime  @default(now()) @db.Timestamp(0)
+  image       String
+  
+  category    category  @relation(fields: [cid], references: [id])
+
+
+  
+}
+
+model socials {
+  id        Int      @id @default(autoincrement())
+  facebook  String   @db.VarChar(200)
+  youtube   String   @db.VarChar(200)
+  twitter   String   @db.VarChar(200)
+  linkedin  String   @db.VarChar(200)
+  about     String   @db.Text
+  address   String   @db.Text
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+

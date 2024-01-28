@@ -1,0 +1,44 @@
+-- CreateTable
+CREATE TABLE `category` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `post` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(191) NOT NULL,
+    `short_des` VARCHAR(191) NOT NULL,
+    `description` LONGTEXT NOT NULL,
+    `keywords` VARCHAR(191) NOT NULL,
+    `cid` INTEGER NOT NULL,
+    `type` VARCHAR(191) NOT NULL,
+    `views` INTEGER NOT NULL DEFAULT 0,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `image` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `socials` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `facebook` VARCHAR(200) NOT NULL,
+    `youtube` VARCHAR(200) NOT NULL,
+    `twitter` VARCHAR(200) NOT NULL,
+    `linkedin` VARCHAR(200) NOT NULL,
+    `about` TEXT NOT NULL,
+    `address` TEXT NOT NULL,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `post` ADD CONSTRAINT `post_cid_fkey` FOREIGN KEY (`cid`) REFERENCES `category`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
